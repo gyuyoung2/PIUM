@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "295060354419",
+    "project_id": "fordelete-5db5a",
+    "storage_bucket": "fordelete-5db5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295060354419:android:415ae9bbbf54fb1cf58106",
+        "android_client_info": {
+          "package_name": "com.example.deletelater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295060354419-qeg0q3vji1qmoce168cdmgjjsplr46u6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deletelater",
+            "certificate_hash": "28692764e352fb51c959b5633c1289df03fac1ad"
+          }
+        },
+        {
+          "client_id": "295060354419-8t29ca1vv2cpg2598j4bmnqla1qm2aqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5xIocN1ClflxLDiNr81kBeW9WPG8HnhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295060354419-8t29ca1vv2cpg2598j4bmnqla1qm2aqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
