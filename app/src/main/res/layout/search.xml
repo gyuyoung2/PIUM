@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plant Search"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/gotu"/>
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+
+        android:orientation="horizontal"
+
+        android:weightSum="10">
+
+
+        <EditText
+            android:id="@+id/edit"
+
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+
+
+            android:layout_weight="8"
+
+            android:background="@drawable/edittext_custom"
+
+            android:hint="   ex) 산세베리아"
+
+            android:textSize="12sp" />
+
+        <android.widget.Button
+            android:id="@+id/button"
+
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+
+            android:layout_height="50dp"
+
+            android:layout_weight="2"
+
+            android:background="@drawable/button_custom"
+
+            android:text="검색"
+
+            android:textColor="@color/white"
+
+            android:textSize="12sp"
+
+            android:onClick="mOnClick"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:text="검색결과"/>
+
+
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/listview"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>
