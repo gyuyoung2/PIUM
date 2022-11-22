@@ -2,9 +2,16 @@ package com.example.deletelater;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,63 +28,86 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+import org.w3c.dom.Text;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
 
-    TextView textView;
-//    TextView textView2;
-    String test = "93";
-    @SuppressLint("MissingInflatedId")
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+    private BottomNavigationView bottomNavigationView;
+    private FragmentTransaction ft;
+    private FragmentManager fm;
+
+    private home home;
+    private search search;
+    private myplant myplant;
+    private report report;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.load_info);
-        ProgressBar bar = (ProgressBar) findViewById(R.id.circle_moisture);
-
-//        editText = findViewById(R.id.edit_id);
-//        button = (Button) findViewById(R.id.read_btn);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Log.d("MainActivity", "Button - onClickListener");
-//                FirebaseDatabase.getInstance().getReference().push().setValue(editText.getText().toString());
-//            }
-//        });
-
-        FirebaseDatabase.getInstance().getReference().addChildEventListener(new ChildEventListener() {
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("MainActivity", "ChildEventListener - onChildAdded : " + dataSnapshot.getValue());
-
-                for (DataSnapshot snapshot : dataSnapshot.child("moisture").getChildren()) {
-                        Log.d("MainActivity", "ValueEventListener(add) : " + snapshot.getValue());
-                        textView.setText(Integer.valueOf(snapshot.getValue().toString()).intValue()+ "%");
-                        test = textView.getText().toString();
-                        Log.d("test",test);
-                        bar.setProgress(Integer.parseInt(String.valueOf(Integer.valueOf(snapshot.getValue().toString()).intValue())));
-                }
-            }
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.d("MainActivity", "ChildEventListener - onChildChanged : " + s);
-
-                for (DataSnapshot snapshot : dataSnapshot.child("moisture").getChildren()) {
-                        Log.d("MainActivity", "ValueEventListener(change) : " + snapshot.getValue());
-                        textView.setText(Integer.valueOf(snapshot.getValue().toString()).intValue()+"%");
-                        bar.setProgress(Integer.parseInt(String.valueOf(Integer.valueOf(snapshot.getValue().toString()).intValue())));
+        bottomNavigationView = findViewById(R.id.bottomNavi);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_home:
+                        setHome(0);
+                        break;
+                    case R.id.action_search:
+                        setHome(1);
+                        Log.d("test","검색선택");
+                        break;
+                    case R.id.action_myplant:
+                        setHome(2);
+                        break;
+                    case R.id.action_report:
+                        setHome(3);
+                        break;
 
                 }
+                return true;
 
-            }
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d("MainActivity", "ChildEventListener - onChildRemoved : " + dataSnapshot.getKey());
-            }
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Log.d("MainActivity", "ChildEventListener - onChildMoved" + s);
-            }
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d("MainActivity", "ChildEventListener - onCancelled" + databaseError.getMessage());
             }
         });
+        home = new home();
+        search = new search();
+        myplant = new myplant();
+        report = new report();
+        setHome(0); //첫 fragment 화면 설정해주기
+    }
 
-//        bar.setProgress(Integer.valueOf(textView.getText().toString()));
-//        bar.setProgress(Integer.parseInt(textView.getText().toString()));
+    private void setHome(int n){
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        switch (n){
+            case 0:
+                ft.replace(R.id.main_frame,home);
+                ft.commit();
+                break;
+            case 1:
+                ft.replace(R.id.main_frame,search);
+                ft.commit();
+                Log.d("test","검색됐음");
+                break;
+            case 2:
+                ft.replace(R.id.main_frame,myplant);
+                ft.commit();
+                break;
+            case 3:
+                ft.replace(R.id.main_frame, report);
+                ft.commit();
+                break;
+        }
 
     }
 

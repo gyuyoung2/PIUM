@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/hi"
+        android:title="메인" />
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="식물검색"/>
+    <item
+        android:id="@+id/action_myplant"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_spa_24"
+        android:title="나의꽃밭"/>
+    <item
+        android:id="@+id/action_report"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_assignment_24"
+        android:title="리포트"/>
+
+
+</menu>
