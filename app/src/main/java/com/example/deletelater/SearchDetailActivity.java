@@ -1,21 +1,15 @@
 package com.example.deletelater;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -23,14 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class PlantSearchDetail extends AppCompatActivity  {
+public class SearchDetailActivity extends AppCompatActivity  {
 
 
     Bitmap bitmap;
@@ -44,7 +36,7 @@ public class PlantSearchDetail extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plant_search_detail);
+        setContentView(R.layout.activity_search_detail);
         Intent intent = getIntent();
         name = intent.getStringExtra("plant");
         String imgsrc = intent.getStringExtra("plant_img");
