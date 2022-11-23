@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 
 import java.io.Serializable;
 
-public class Plant implements Serializable {
-    private String name;
-    private Bitmap imgsrc;
+public class Plant implements Serializable { //Plant Model
+    private String name; //식물 이름
+    private Bitmap imgsrc; //식물 img
 
     public String getName(){
         return name;

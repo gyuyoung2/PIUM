@@ -41,13 +41,8 @@ public class SearchFragment extends Fragment {
     String key="20220921NVF7XYD8DH0PUMNT2RWG"; //농사로 검색 키
     Bitmap bitmap;
     PlantAdapter adapter;
-    ArrayList<String> data1 = new ArrayList<>();
-    ArrayList<String> imgdata = new ArrayList<>();
-    ArrayList<String> plantinfo = new ArrayList<>();
-    ArrayList<Plant> mLstSearch;
-
-
-    TextView textView;
+    ArrayList<String> data1 = new ArrayList<>(); //검색된 식물이름 저장 변수
+    ArrayList<String> imgdata = new ArrayList<>(); //검색된 식물사진 url 저장 변수
 
     @Nullable
     @Override
@@ -125,25 +120,21 @@ public class SearchFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(),data1.get(position),Toast.LENGTH_LONG).show();
                 int currentposition = position;
-                Log.d("position",Integer.toString(currentposition));
                 String plant = data1.get(currentposition);
                 String imgsrc = imgdata.get(currentposition);
                 Intent intent = new Intent(getActivity(), SearchDetailActivity.class);
                 intent.putExtra("plant",plant);
                 intent.putExtra("plant_img",imgsrc);
-                getActivity().startActivity(intent);
+                getActivity().startActivity(intent); //searchDeatil view intent
             }
         });
     }
 
     //XmlPullParser를 이용하여 농사로(농촌진흥청) 에서 제공하는 OpenAPI XML 파일 파싱하기(parsing)
-    ArrayList getXmlData() throws UnsupportedEncodingException {
+    ArrayList getXmlData() throws UnsupportedEncodingException { //xml 데이터 가져오기
 
         ArrayList<String> array = new ArrayList<>();
-
-        StringBuffer buffer = new StringBuffer();
 
         String str = search_edit.getText().toString(); //EditText에 작성된 Text얻어오기
 
@@ -155,7 +146,7 @@ public class SearchFragment extends Fragment {
 
                 + "?apiKey=" + key                       //key 값
 
-                + "&sType=sCntntsSj"//검색서비스 api명세
+                + "&sType=sCntntsSj" //검색서비스 api명세
 
                 + "&sText=" + location                     //검색하고자 하는 식물
 
@@ -163,11 +154,6 @@ public class SearchFragment extends Fragment {
 
                 + "&numOfRows=20";                 //검색 출력 갯수
 
-//              +"&display=10"                      //검색 출력 건수  10~100
-//
-//              +"&start=1";                         //검색 시작 위치  1~1000
-
-
         try {
 
             URL url = new URL(queryUrl); //문자열로 된 요청 url을 URL 객체로 생성.
@@ -175,7 +161,6 @@ public class SearchFragment extends Fragment {
             InputStream is = url.openStream();  //url위치로 입력스트림 연결
 
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-
 
             XmlPullParser xpp = factory.newPullParser();
 
@@ -189,12 +174,11 @@ public class SearchFragment extends Fragment {
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
 
-
                 switch (eventType) {
 
-                    case XmlPullParser.START_DOCUMENT:
+                    case XmlPullParser.START_DOCUMENT: //태그 진입
 
-                        buffer.append("start plant XML parsing...\n\n");
+                        Log.d("imgpasing", "식물이름 파싱 태그 시작");
 
                         break;
 
@@ -202,31 +186,21 @@ public class SearchFragment extends Fragment {
 
                         tag = xpp.getName();    //테그 이름 얻어오기
 
-
                         if (tag.equals("item")) ;// 첫번째 검색결과
 
                         else if (tag.equals("cntntsSj")) {
 
-                            buffer.append("식물명 | ");
-
                             xpp.next();
-
-                            buffer.append(xpp.getText());
                             array.add(xpp.getText());
-                            Log.d("array test[0]", String.valueOf(array.size()));
-
-                            buffer.append("\n");          //줄바꿈 문자 추가
+                            Log.d("array test[0]", String.valueOf(array.size())); //점검 로그
                         }
                         break;
 
                     case XmlPullParser.TEXT:
-
                         break;
 
                     case XmlPullParser.END_TAG:
-
                         tag = xpp.getName();    //테그 이름 얻어오기
-
                         break;
                 }
                 eventType = xpp.next();
@@ -234,44 +208,27 @@ public class SearchFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        buffer.append("식물 결과 끝...\n");
-
-
         return array; //StringBuffer 문자열 객체 반환
 
 
     }//getXmlData method....
 
     ArrayList getXmlImage() throws UnsupportedEncodingException { //식물 이미지 호출 method
-        Log.d("location","실행1");
         ArrayList<String> imgsrc = new ArrayList<>();
-        Log.d("location","실행2");
-        StringBuffer buffer = new StringBuffer();
-        Log.d("location","실행3");
         String str = search_edit.getText().toString(); //EditText에 작성된 Text얻어오기
-        Log.d("location","실행4");
         String location = URLEncoder.encode(str, "UTF-8"); //한글의 경우 인식이 안되기에 utf-8 방식으로 encoding..
-        Log.d("location",location);
 
         String queryUrl = "http://api.nongsaro.go.kr/service/garden/gardenList"   //요청 URL
 
                 + "?apiKey=" + key                       //key 값
 
-                + "&sType=sCntntsSj"//검색서비스 api명세
+                + "&sType=sCntntsSj" //검색서비스 api명세
 
-                + "&sText=" + location                     //검색서비스 api명세
+                + "&sText=" + location                     //검색한 식물명
 
                 + "&wordType=cntntsSj"
 
                 + "&numOfRows=100";                 //지역검색 요청값
-
-//                +"&display=10"                      //검색 출력 건수  10~100
-//
-//                +"&start=1";                         //검색 시작 위치  1~1000
-
-
 
         try {
 
@@ -297,47 +254,34 @@ public class SearchFragment extends Fragment {
 
                     case XmlPullParser.START_DOCUMENT:
 
-                        buffer.append("start NAVER XML parsing...\n\n");
-
                         break;
 
                     case XmlPullParser.START_TAG:
 
                         tag = xpp.getName();    //테그 이름 얻어오기
 
-
                         if (tag.equals("item")) ;// 첫번째 검색결과
 
                         else if (tag.equals("rtnStreFileNm")) {
                             xpp.next();
-                            imgsrc.add(xpp.getText().substring(0, xpp.getText().indexOf("g")+1)); //title 요소의 TEXT 읽어와서 문자열버퍼에 추가
+                            imgsrc.add(xpp.getText().substring(0, xpp.getText().indexOf("g") + 1)); //title 요소의 TEXT 읽어와서 문자열버퍼에 추가
                         }
                         break;
 
                     case XmlPullParser.TEXT:
-
                         break;
 
                     case XmlPullParser.END_TAG:
-
                         break;
-
                 }
-
                 eventType = xpp.next();
-
             }
-
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
-
 
         return imgsrc; //StringBuffer 문자열 객체 반환
 
     }//(Image)getXmlData method....
-
 
 }
