@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PlantAdapter extends BaseAdapter {
+public class PlantAdapter extends BaseAdapter { //xml파싱한 data를 listview에 전달하기 위한 adapter
     ArrayList<Plant> items = new ArrayList<Plant>();
     Context context;
     @Override
@@ -21,7 +21,7 @@ public class PlantAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         return items.get(position);
-    }
+    } //해당 item position 반환
 
     @Override
     public long getItemId(int position) {
@@ -29,7 +29,7 @@ public class PlantAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) { //연동
         context = parent.getContext();
         Plant plant = items.get(position);
 
@@ -52,6 +52,5 @@ public class PlantAdapter extends BaseAdapter {
     public void addItem(Plant item){
         items.add(item);
     }
-
 
 }

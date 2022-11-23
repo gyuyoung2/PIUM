@@ -12,14 +12,14 @@ import android.util.Log;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private BottomNavigationView bottomNavigationView;
-    private FragmentTransaction ft;
-    private FragmentManager fm;
+    private BottomNavigationView bottomNavigationView; //하단 네비게이션 바
+    private FragmentTransaction ft; //fragment를 위한 transaction
+    private FragmentManager fm; //화면 전환을 위해 fragmentmanager
 
-    private HomeFragment home;
-    private SearchFragment search;
-    private MyPlantFragment myplant;
-    private ReportFragment report;
+    private HomeFragment home; //홈 화면
+    private SearchFragment search; //검색 화면
+    private MyPlantFragment myplant; //내 식물 정보
+    private ReportFragment report; //주간 리포트
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_search:
                         setHome(1);
-                        Log.d("test","검색선택");
                         break;
                     case R.id.action_myplant:
                         setHome(2);
@@ -43,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_report:
                         setHome(3);
                         break;
-
                 }
                 return true;
-
             }
         });
         home = new HomeFragment();
@@ -56,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setHome(0); //첫 fragment 화면 설정해주기
     }
 
-    private void setHome(int n){
+    private void setHome(int n){ //fragment화면 전환 switch문
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n){
@@ -67,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 ft.replace(R.id.main_frame,search);
                 ft.commit();
-                Log.d("test","검색됐음");
                 break;
             case 2:
                 ft.replace(R.id.main_frame,myplant);
