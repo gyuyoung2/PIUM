@@ -17,17 +17,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-public class home extends Fragment {
-    private View view;
+public class HomeFragment extends Fragment { //main 화면
+    private View view; //
     private TextView textView;
     private String moisture;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.home,container,false);
+        view = inflater.inflate(R.layout.fragment_home,container,false);
         textView = (TextView) view.findViewById(R.id.load_info);
         ProgressBar bar = (ProgressBar) view.findViewById(R.id.circle_moisture);
 

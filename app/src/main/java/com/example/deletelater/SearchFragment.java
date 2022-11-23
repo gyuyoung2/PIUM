@@ -1,7 +1,5 @@
 package com.example.deletelater;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -34,7 +32,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
-public class search extends Fragment {
+public class SearchFragment extends Fragment {
     private View view;
     private EditText search_edit;
     private ListView listView;
@@ -55,7 +53,7 @@ public class search extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup
             container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.search, container, false);
+        view = inflater.inflate(R.layout.fragment_search, container, false);
         search_edit = (EditText) view.findViewById(R.id.edit);
         button = view.findViewById(R.id.button);
         listView = view.findViewById(R.id.listview);
@@ -132,7 +130,7 @@ public class search extends Fragment {
                 Log.d("position",Integer.toString(currentposition));
                 String plant = data1.get(currentposition);
                 String imgsrc = imgdata.get(currentposition);
-                Intent intent = new Intent(getActivity(),PlantSearchDetail.class);
+                Intent intent = new Intent(getActivity(), SearchDetailActivity.class);
                 intent.putExtra("plant",plant);
                 intent.putExtra("plant_img",imgsrc);
                 getActivity().startActivity(intent);
@@ -163,7 +161,7 @@ public class search extends Fragment {
 
                 + "&wordType=cntntsSj"
 
-                + "&numOfRows=20";                 //검색 출력 갯수]
+                + "&numOfRows=20";                 //검색 출력 갯수
 
 //              +"&display=10"                      //검색 출력 건수  10~100
 //

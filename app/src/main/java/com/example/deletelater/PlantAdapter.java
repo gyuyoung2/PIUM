@@ -35,7 +35,7 @@ public class PlantAdapter extends BaseAdapter {
 
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview,parent,false);
+            convertView = inflater.inflate(R.layout.searh_listview,parent,false);
         }
 
         TextView number = convertView.findViewById(R.id.num);
