@@ -119,6 +119,7 @@ public class SearchFragment extends Fragment { //식물검색 fragment..
 
     //XmlPullParser를 이용하여 농사로(농촌진흥청) 에서 제공하는 OpenAPI XML 파일 파싱하기(parsing)
     ArrayList getXmlData() throws UnsupportedEncodingException { //xml 데이터 가져오기
+        Log.d("IngetXmlData","method 진입");
 
         ArrayList<String> array = new ArrayList<>(); //태그 안 데이터 임시저장
 
