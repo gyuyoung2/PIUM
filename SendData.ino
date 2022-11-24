@@ -120,8 +120,9 @@ void loop()
     sendDataPrevMillis = millis();    
     
     int m = analogRead(35); 
+    int moisture=map(m,4095,2402,0,100);  
     
-    Firebase.setIntAsync(fbdo, "Users/User2/recordhumidity", m);        
+    Firebase.setIntAsync(fbdo, "Users/User2/recordhumidity", moisture);        
 
     
 
