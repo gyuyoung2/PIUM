@@ -113,7 +113,7 @@ void loop()
     
     float humidity = dht.readHumidity(); 
     
-    Firebase.setIntAsync(fbdo, "Users/User2/humidity", h);        
+    Firebase.setIntAsync(fbdo, "Users/User2/humidity", humidity);        
 
     
 
