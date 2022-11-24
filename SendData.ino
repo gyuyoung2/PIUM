@@ -98,6 +98,10 @@ void loop()
     int m=analogRead(35);
     int moisture=map(m,4095,2402,0,100);     
     
+    if (moisture>100){
+      moisture=100;
+    }
+    
     Firebase.setIntAsync(fbdo, "Users/User2/Plant1/mositure", moisture);             
               
   }
@@ -121,6 +125,10 @@ void loop()
     
     int m = analogRead(35); 
     int moisture=map(m,4095,2402,0,100);  
+    
+    if (moisture>100){
+      moisture=100;
+    }
     
     Firebase.setIntAsync(fbdo, "Users/User2/recordhumidity", moisture);        
 
