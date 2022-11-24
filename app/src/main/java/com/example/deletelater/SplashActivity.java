@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity { //초기화면 activity...
 
     protected void onCreate(Bundle savedInstanceState) {
 

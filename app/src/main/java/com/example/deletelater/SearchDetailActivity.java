@@ -22,15 +22,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class SearchDetailActivity extends AppCompatActivity  {
+public class SearchDetailActivity extends AppCompatActivity  { //식물정보 detail activity
 
 
-    Bitmap bitmap;
-    String name;
-    String key = "20220921NVF7XYD8DH0PUMNT2RWG";
+    Bitmap fBitmap;
+    String fName;
+    String fKey = "20220921NVF7XYD8DH0PUMNT2RWG";
     ArrayList<String> data = new ArrayList<>();
-    String num;
-    StringBuffer moistureData;
+    String fNum;
+    StringBuffer fMoistureData;
 
 
     @Override
@@ -38,7 +38,7 @@ public class SearchDetailActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detail);
         Intent intent = getIntent();
-        name = intent.getStringExtra("plant");
+        fName = intent.getStringExtra("plant");
         String imgsrc = intent.getStringExtra("plant_img");
         TextView textView = (TextView) findViewById(R.id.myplantDeatilName);
         ImageView imageView = (ImageView) findViewById(R.id.myplantDeatilImg);
@@ -47,15 +47,15 @@ public class SearchDetailActivity extends AppCompatActivity  {
             public void run(){
                 try {
                     data = getXmlplantNum();
-                    num = data.get(0);
-                    moistureData = getXmlMoisture();
+                    fNum = data.get(0);
+                    fMoistureData = getXmlMoisture();
                     URL imgurl = new URL("http://www.nongsaro.go.kr/cms_contents/301/" + imgsrc);
                     HttpURLConnection conn = (HttpURLConnection) imgurl.openConnection();
                     conn.setDoInput(true);
                     conn.connect();
 
                     InputStream is = conn.getInputStream();
-                    bitmap = BitmapFactory.decodeStream(is);
+                    fBitmap = BitmapFactory.decodeStream(is);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -66,17 +66,17 @@ public class SearchDetailActivity extends AppCompatActivity  {
         mThread.start();
         try{
             mThread.join();
-            imageView.setImageBitmap(bitmap);
+            imageView.setImageBitmap(fBitmap);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         Log.d("test",imgsrc);
-        textView.setText(name);
+        textView.setText(fName);
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                plantNum.setText(moistureData);
+                plantNum.setText(fMoistureData);
             }
         });
     }
@@ -85,11 +85,11 @@ public class SearchDetailActivity extends AppCompatActivity  {
 
         ArrayList<String> arr = new ArrayList<>();
 
-        String str = name; //EditText에 작성된 Text얻어오기
+        String str = fName; //EditText에 작성된 Text얻어오기
 
         String queryUrl = "http://api.nongsaro.go.kr/service/garden/gardenList"   //요청 URL
 
-                + "?apiKey=" + key                       //key 값
+                + "?apiKey=" + fKey                       //key 값
 
                 + "&sType=sCntntsSj"//검색서비스 api명세
 
@@ -180,12 +180,12 @@ public class SearchDetailActivity extends AppCompatActivity  {
 
         StringBuffer buffer = new StringBuffer();
 
-        String str = num; //식물 일련번호 가져오기
+        String str = fNum; //식물 일련번호 가져오기
         Log.d("plant name",str);
 
         String queryUrl = "http://api.nongsaro.go.kr/service/garden/gardenDtl"   //요청 URL
 
-                + "?apiKey=" + key                       //key 값
+                + "?apiKey=" + fKey                       //key 값
 
                 + "&cntntsNo="+ str;                     //검색서비스 api명세
 
