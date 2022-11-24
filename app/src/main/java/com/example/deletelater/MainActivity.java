@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()){ //사용자가 터치한 itemId값을 판단해서 그 position fragment를 보여줌
                     case R.id.action_home:
                         setHome(0);
                         break;
