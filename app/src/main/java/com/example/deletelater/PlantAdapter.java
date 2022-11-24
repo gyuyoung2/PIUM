@@ -37,7 +37,7 @@ public class PlantAdapter extends BaseAdapter { //xml파싱한 data를 listview�
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.searh_listview,parent,false);
         }
-
+        //view에 구성요소 추가
         TextView number = convertView.findViewById(R.id.num);
         TextView nameText = convertView.findViewById(R.id.name);
         ImageView imgview = convertView.findViewById(R.id.imgsrc);
