@@ -27,14 +27,14 @@ public class HomeFragment extends Fragment { //home
         ProgressBar bar = (ProgressBar) view.findViewById(R.id.circle_moisture); //식물 수분 progressbar
 
         FirebaseDatabase.getInstance().getReference().child("Users").child("User2").child("Plant1").addValueEventListener(new ValueEventListener() {
-            public void onDataChange(DataSnapshot dataSnapshot) {// 수정본
+            public void onDataChange(DataSnapshot dataSnapshot) {// 식물의 데이터 값 가져오기
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Log.d("firebase moisture",snapshot.getValue().toString());
                     textView.setText(snapshot.getValue().toString()+"%");
                     bar.setProgress(Integer.parseInt(String.valueOf(Integer.valueOf(snapshot.getValue().toString()).intValue())));
                 }
             }
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) { //오류 처리
             }
         });
 
