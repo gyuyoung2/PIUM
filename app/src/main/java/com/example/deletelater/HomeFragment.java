@@ -26,35 +26,15 @@ public class HomeFragment extends Fragment { //home
         TextView textView = (TextView) view.findViewById(R.id.load_info); //식물 이름
         ProgressBar bar = (ProgressBar) view.findViewById(R.id.circle_moisture); //식물 수분 progressbar
 
-        FirebaseDatabase.getInstance().getReference().addChildEventListener(new ChildEventListener() {
-
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                for (DataSnapshot snapshot : dataSnapshot.child("moisture").getChildren()) {
-                    textView.setText(Integer.valueOf(snapshot.getValue().toString()).intValue()+ "%");
-                    String moisture = textView.getText().toString(); //식물 수분 출력
-                    Log.d("moisture",moisture);
+        FirebaseDatabase.getInstance().getReference().child("Users").child("User2").child("Plant1").addValueEventListener(new ValueEventListener() {
+            public void onDataChange(DataSnapshot dataSnapshot) {// 수정본
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("firebase moisture",snapshot.getValue().toString());
+                    textView.setText(snapshot.getValue().toString()+"%");
                     bar.setProgress(Integer.parseInt(String.valueOf(Integer.valueOf(snapshot.getValue().toString()).intValue())));
                 }
-
-            }
-
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) { //식물 수분 변경
-
-                for (DataSnapshot snapshot : dataSnapshot.child("moisture").getChildren()) {
-                    textView.setText(Integer.valueOf(snapshot.getValue().toString()).intValue()+"%");
-                    bar.setProgress(Integer.parseInt(String.valueOf(Integer.valueOf(snapshot.getValue().toString()).intValue())));
-                }
-
-            }
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d("MainActivity", "ChildEventListener - onChildRemoved : " + dataSnapshot.getKey());
-            }
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Log.d("MainActivity", "ChildEventListener - onChildMoved" + s);
             }
             public void onCancelled(DatabaseError databaseError) {
-                Log.d("MainActivity", "ChildEventListener - onCancelled" + databaseError.getMessage());
             }
         });
 
