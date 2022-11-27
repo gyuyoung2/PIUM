@@ -81,7 +81,7 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
         });
     }
 
-    ArrayList getXmlplantNum() throws UnsupportedEncodingException { //해당 식물의 물주기 기준 값 가져오기
+    ArrayList getXmlplantNum() throws UnsupportedEncodingException { //해당 식물 일련번호 값 가져오기 
 
         ArrayList<String> arr = new ArrayList<>();
 
