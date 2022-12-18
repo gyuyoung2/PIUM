@@ -52,19 +52,21 @@ public class SearchFragment extends Fragment { //식물검색 fragment..
 
             @Override
             public void onClick(View v) {
+                Log.d("onClick","사용자 터치");
                     switch( v.getId() ){
-
                         case R.id.button:
                             //네트워크를 이용할 때 Thread
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
                                     try {
+                                        Log.d("run","Thread 진입");
                                         adapter = new PlantAdapter();
 
                                         imgdata = getXmlImage();
                                         plantNameData = getXmlData();//아래 메소드를 호출하여 XML data를 파싱해서 String 객체로 얻어오기
                                         for(int i = 0; i< plantNameData.size(); i++) { //url 이미지를 호출 (검색된 갯수만큼 일대일 매칭으로 식물사진 불러옴)
+                                            Log.d("for","loop 진입");
                                             URL imgurl = new URL("http://www.nongsaro.go.kr/cms_contents/301/" + imgdata.get(i));
                                             HttpURLConnection conn = (HttpURLConnection) imgurl.openConnection();
                                             conn.setDoInput(true);
@@ -159,15 +161,16 @@ public class SearchFragment extends Fragment { //식물검색 fragment..
 
                 switch (eventType) {
 
-                    case XmlPullParser.START_DOCUMENT: //태그 진입
-                        Log.d("imgpasing", "식물이름 파싱 태그 시작"); //test log
-                        break;
+//                    case XmlPullParser.START_DOCUMENT: //태그 진입
+//                        Log.d("imgpasing", "식물이름 파싱 태그 시작"); //test log
+//                        break;
 
                     case XmlPullParser.START_TAG:
                         tag = xpp.getName();    //테그 이름 얻어오기
 
-                        if (tag.equals("item")) ;// 첫번째 검색결과
-                        else if (tag.equals("cntntsSj")) {
+//                        if (tag.equals("item")) ;// 첫번째 검색결과
+
+                        if (tag.equals("cntntsSj")) {
                             xpp.next();
                             array.add(xpp.getText());//파싱을 한 문자열을 arraylist에 저장
                             Log.d("array test[0]", String.valueOf(array.size())); //점검 로그

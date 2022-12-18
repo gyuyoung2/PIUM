@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,15 +40,17 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detail);
         Intent intent = getIntent();
-        fName = intent.getStringExtra("plant");
-        String imgsrc = intent.getStringExtra("plant_img");
+        fName = intent.getStringExtra("plant"); //searchfragment에서 식물 이름 데이터를 받아옴
+        String imgsrc = intent.getStringExtra("plant_img"); //searchfragment에서 식물 이미지 데이터를 받아옴
         TextView textView = (TextView) findViewById(R.id.myplantDeatilName);
         ImageView imageView = (ImageView) findViewById(R.id.myplantDeatilImg);
         TextView plantNum = (TextView) findViewById(R.id.plantNum);
+        ImageButton plant_register = (ImageButton) findViewById(R.id.ib_register);
+
         Thread mThread = new Thread(){
             public void run(){
                 try {
-                    data = getXmlplantNum();
+                    data = getXmlPlantNum();
                     fNum = data.get(0);
                     fMoistureData = getXmlMoisture();
                     URL imgurl = new URL("http://www.nongsaro.go.kr/cms_contents/301/" + imgsrc);
@@ -79,9 +83,18 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
                 plantNum.setText(fMoistureData);
             }
         });
+
+        findViewById(R.id.ib_register).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PlantregisterActivity.class);
+                intent.putExtra("plantDetail", (CharSequence) fMoistureData); //plant이름 detail activity로 데이터전송
+                startActivity(intent);
+            }
+        });
     }
 
-    ArrayList getXmlplantNum() throws UnsupportedEncodingException { //해당 식물의 물주기 기준 값 가져오기
+    ArrayList getXmlPlantNum() throws UnsupportedEncodingException { //해당 식물 일련번호 값 가져오기
 
         ArrayList<String> arr = new ArrayList<>();
 
@@ -170,7 +183,6 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
 
         }
 
-
         return arr; //StringBuffer 문자열 객체 반환
 
 
@@ -189,11 +201,7 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
 
                 + "&cntntsNo="+ str;                     //검색서비스 api명세
 
-//                + "&wordType=cntntsSj"
-
-//                + "&numOfRows=20";                 //지역검색 요청값
         Log.d("testurl", queryUrl);
-
 
         try {
 
@@ -228,7 +236,6 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
 
                         tag = xpp.getName();    //테그 이름 얻어오기
 
-
                         if (tag.equals("item"));// 첫번째 검색결과
 
                         else if (tag.equals("clCodeNm")) {
@@ -242,15 +249,12 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
 
                         }
 
-
                         else if (tag.equals("watercycleAutumnCodeNm")) {
-
                             xpp.next();
                             Log.d("detail moisture", xpp.getText());
                             buffer.append("물주기 |"+xpp.getText());
                             buffer.append("\n");
                             //줄바꿈 문자 추가
-
                         }
 
                         break;

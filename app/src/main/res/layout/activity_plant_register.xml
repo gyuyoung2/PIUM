@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlantRegisterActivity"
+    android:orientation="vertical">
+<!--    title-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back_icon"
+            app:tint="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 식물 등록"
+            android:textSize="25dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/save"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:tint="@color/black"
+            android:background="@drawable/ic_baseline_check_24"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+
+        android:layout_gravity="center"
+
+        android:layout_marginTop="20sp"
+
+        >
+
+        <ImageView
+
+            android:id="@+id/user_image"
+
+            android:layout_width="150dp"
+
+            android:layout_height="150dp"
+
+            android:layout_gravity="center"
+
+            android:maxWidth="200dp"
+
+            android:maxHeight="200dp"
+
+            android:adjustViewBounds="true"
+
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+
+            android:onClick="onClick"/>
+
+        <Button
+
+            android:id="@+id/btn_UploadPicture"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#7BF29C"
+            android:text="식물사진 선택"
+            android:textColor="@color/black"
+            android:onClick="onClick"
+            android:textSize="13dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="식물 별명  |"
+                android:textColor="@color/black"
+                android:textSize="16dp">
+            </TextView>
+
+            <EditText
+                android:id="@+id/et_plantname"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="식물이름"
+                android:textSize="15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <android.widget.Button
+                android:id="@+id/DatePicker"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/googlebutton"
+                android:onClick="showDatePicker"
+                android:text="키우는 날짜 설정"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.358" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/tv_plantDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="날짜"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_plantDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="식물과 |"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

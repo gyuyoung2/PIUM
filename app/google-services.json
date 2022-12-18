@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "295060354419",
+    "firebase_url": "https://fordelete-5db5a-default-rtdb.firebaseio.com",
     "project_id": "fordelete-5db5a",
     "storage_bucket": "fordelete-5db5a.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "295060354419-l7uu472ehpjuur52qkgskhv6oqp1movj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deletelater",
+            "certificate_hash": "f3f1553ebf3f40e10ec4d23caa5794f3159bbd50"
+          }
+        },
         {
           "client_id": "295060354419-qeg0q3vji1qmoce168cdmgjjsplr46u6.apps.googleusercontent.com",
           "client_type": 1,
