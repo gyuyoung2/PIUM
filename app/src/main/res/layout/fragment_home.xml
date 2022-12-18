@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -32,8 +33,8 @@
                 android:textColor="#000000"
                 android:textSize="40sp"></TextView>
 
-            <ImageButton
-                android:id="@+id/btn_open"
+            <ImageView
+                android:id="@+id/btn_user"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="7dp"
@@ -43,70 +44,64 @@
 
         </LinearLayout>
     </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="꽃과 식물을 더 아름답게"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textSize="15sp">
-    </TextView>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="싼세"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginTop="60dp"
-        android:layout_gravity="center">
-    </TextView>
-
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-        <ProgressBar
-            android:id="@+id/circle_moisture"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center_horizontal"
-            android:indeterminateOnly="false"
-            android:progressDrawable="@drawable/progress_main" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="꽃과 식물을 더 아름답게"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15sp">
+            </TextView>
 
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/plant_1">
-
-        </de.hdodenhof.circleimageview.CircleImageView>
-
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_logout"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_baseline_logout_24"/>
     </FrameLayout>
 
 
-    <TextView
-        android:id="@+id/load_info"
-        android:layout_width="wrap_content"
+
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="35dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:layout_marginTop="10dp">
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+    </FrameLayout>
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        app:ci_drawable="@drawable/circleindicator_color"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom" />
+
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@drawable/humstate">
+        android:background="@drawable/humstate"
+        android:layout_marginTop="0dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,9 +130,10 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50%"
+            android:text="30%"
             android:textSize="20dp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -146,4 +142,20 @@
             android:layout_marginTop="60dp"/>
     </FrameLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님 오늘 식물 상태가 어떤가요?"/>
+    </LinearLayout>
 </LinearLayout>

@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity { //초기화면 activity.
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this ,MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this , Login.class);
                 startActivity(intent);
                 finish();
             }
