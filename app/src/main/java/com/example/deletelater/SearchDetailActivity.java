@@ -96,6 +96,7 @@ public class SearchDetailActivity extends AppCompatActivity  { //식물정보 de
 
     ArrayList getXmlPlantNum() throws UnsupportedEncodingException { //해당 식물 일련번호 값 가져오기
 
+
         ArrayList<String> arr = new ArrayList<>();
 
         String str = fName; //EditText에 작성된 Text얻어오기

@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment { //home
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false); //home fragment view 추가
+
         //ViewPager2
         mPager = view.findViewById(R.id.viewpager);
         mDatabase = FirebaseDatabase.getInstance().getReference();
